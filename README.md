@@ -18,9 +18,9 @@
 - A backup script file was created using pg_dump that would backup the db to the attached EBS volume.
 - A cronjob was set up in the server so that the backup script would run automatically every day.
 
-<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/dbbackup.jpeg" width="600" height="300">
+<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/dbbackup.jpeg" width="800" height="500">
 
-<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/backup.jpeg" width="600" height="300">
+<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/backup.png" width="600" height="300">
 
 ## Building and Containerising
 - The application was build, compiled and packaged to a JAR file using Maven as the build tool.
