@@ -1,62 +1,79 @@
 pipeline {
-    agent {
-        label 'agent1'
-    }
-
-    tools {
-       
-        maven "MAVEN_HOME"
+    agent any
+    environment {
+        JAVA_HOME = '/usr/lib/jvm/java-1.17.0-openjdk-amd64'
+        NEXUS_URL = '134.209.145.49:8081/' // Corrected Nexus server URL
+        NEXUS_CREDENTIALS_ID = '5ec74a6b-e4d5-461c-bd98-e67eec158d5a'
+        DOCKER_IMAGE_NAME = 'jscproductions/javaproject'
+        DOCKER_IMAGE_TAG = 'latest'
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout from GitHub') {
             steps {
-                
-                git branch: 'main', credentialsId: 'githubcredentials', url: 'https://github.com/j-rin/java_sql.git'
-
+                git(url: 'https://github.com/j-rin/java_sql.git', branch: 'main')
             }
         }
-        
+
         stage('Maven Build') {
-            
+            tools {
+                jdk 'Openjdk 17.0.8'
+            }
             steps {
                 sh 'mvn clean package'
             }
         }
-        stage('Scan') {
+        
+        stage('SonarQube Analysis') {
+	    steps {
+		withSonarQubeEnv('sonarqubedroplet') {
+		    sh 'mvn sonar:sonar'
+		}
+	    }
+	}
+
+
+        stage('Build and Push Docker Image') {
             steps {
-         
-                withSonarQubeEnv(installationName: 'sonar-server') { 
-                sh 'mvn sonar:sonar'
+                script {
+                    sh "docker build -t ${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG} ."
+                    sh "docker login"
+                    sh "docker push ${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}"
+                }
+            }
+        }
+
+        stage('Push to Nexus Repository') {
+            steps {
+                script {
+                    nexusArtifactUploader(
+                        nexusVersion: 'nexus3',
+                        protocol: 'http',
+                        nexusUrl: "${env.NEXUS_URL}",
+                        groupId: 'com.pluralsight',
+                        version: '0.0.1-SNAPSHOT',
+                        repository: 'maven-snapshots',
+                        credentialsId: "${env.NEXUS_CREDENTIALS_ID}",
+                        artifacts: [
+                            [artifactId: 'springboot-crud-web-app',
+                             classifier: '',
+                             file: 'target/springboot-crud-web-app-0.0.1-SNAPSHOT.jar',
+                             type: 'jar']
+                        ]
+                    )
                 }
             }
         }
         
-        
-        
-        stage('Image Build') {
+        stage('Deploy') {
             steps {
                 script{
-               
-                sh "docker build -t jerinpaul/jenkins-app:latest ."
+                
+                sh "docker run -p 8080:8080 -d jscproductions/javaproject:latest"
                 }
                 
             }
         }
-        stage('push to dockerhub') {
-            steps {
-                script{
-                sh "docker login"
-                sh "docker push jerinpaul/jenkins-app:latest"
-                }
-                
-            }
-        }
-       
-            
+        
     }
-         
-        
 }
- 
- 
