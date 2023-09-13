@@ -59,9 +59,9 @@
 - Nexus was integrated with the pipeline to upload artifact to Nexus Repo.
 - After Nexus stage, the application was then deployed to the inbuilt Tomcat server run using Docker.
 
-<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/pipeline_output.png" width="600" height="300">
+<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/pipeline_output.png" width="800" height="500">
 
-<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/sonarqube.png" width="600" height="300">
+<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/sonarqube.png" width="800" height="500">
 
-<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/nexus.png" width="600" height="300">
+<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/nexus.png" width="800" height="500">
 
