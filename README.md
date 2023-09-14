@@ -42,6 +42,7 @@
 ## Deploying application to Cluster
 - Before deploying the application, we made sure that all the components such as api server, controller-manager, scheduler etc.
 - The Deployment yaml file was created to deploy the application and a Service yaml file was created to expose the application as a Service.
+- The deployment was successful and created 2 replicas of the application pods as mentioned in the deployments.yml file.
 
 ## Creating the Target Group and ALB
 - A target group was created comprising of the worker nodes so that it could be used as a target to route the traffic when using a load balancer.
