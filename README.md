@@ -41,11 +41,11 @@
 
 ## Deploying application to Cluster
 - Before deploying the application, we made sure that all the components such as api server, controller-manager, scheduler etc.
-- The Deployment yaml file was created to deploy the application and a Service yaml file was created to expose the application as a Service. NodePort was used as the type of service in the Service file.
+- The Deployment yaml file was created to deploy the application and a Service yaml file was created to expose the application as a Service.
 
 ## Creating the Target Group and ALB
 - A target group was created comprising of the worker nodes so that it could be used as a target to route the traffic when using a load balancer.
-- An Application Load Balancer (ALB) was created by configuring the necessary ports and security groups and linking it with the target group created for the worker nodes.
+- An Application Load Balancer (ALB) was created and configured with the necessary ports and security groups. It was then linked with the target group created for the worker nodes.
 - The DNS name provided by the ALB was used to check whether the traffic was routed to the worker nodes mentioned in the target group.
 
 <img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/loadBalancer.jpeg" width="800" height="500">
