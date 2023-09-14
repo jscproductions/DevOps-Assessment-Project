@@ -36,6 +36,7 @@
 - containerd was used as the container runtime.
 - Created seperate security groups for the Master and the Worker which allowed the necessary ports that had to be enabled for Nodeport Services, Kubelet API, Kubernetes API server etc.
 - Worker nodes were joined by using the join command received when running the kubeadm init command in the KMaster.
+- We also implemented the cluster using EKS and created a load balancer.
 
 <img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/cluster.jpeg" width="800" height="500">
 
