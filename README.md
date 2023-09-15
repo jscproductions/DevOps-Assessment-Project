@@ -30,13 +30,12 @@
 
 <img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/dockerhub.png" width="800" height="500">
 
-## Kubernetes Cluster Creation
+## Kubernetes Cluster Creation using kubeadm
 - Three EC2 instances were created; one for the KMaster and the other two for KWorker.
 - We followed the official documentation of Kubernetes to install Kubeadm, Kubectl, Kubelet and other necessary dependencies such as runc, Calico Network plugin etc.
 - containerd was used as the container runtime.
 - Created seperate security groups for the Master and the Worker which allowed the necessary ports that had to be enabled for Nodeport Services, Kubelet API, Kubernetes API server etc.
 - Worker nodes were joined by using the join command received when running the kubeadm init command in the KMaster.
-- We also implemented the cluster using EKS and created a load balancer.
 
 <img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/cluster.jpeg" width="800" height="500">
 
@@ -52,6 +51,13 @@
 
 <img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/loadBalancer.jpeg" width="800" height="500">
 
+## Kubernetes Cluster Creation using EKS
+- We also implemented the cluster using EKS.
+- Node group with two worker nodes were attached to it.
+- After deploying the application as a NodePort service, the node port corresponding to the pos was retrieved.
+- It was then used to create an Application Load Balancer to direct the traffic comming to the load balancer to the application pods in the worker nodes by setting the target group.
+
+
 ## Pipeline Creation
 - A pipeline was created in Jenkins that would automate the CI/CD cycle.
 - Firstly, Git was used as the SCM tool to clone the application repo.
@@ -59,7 +65,8 @@
 - The pipeline was integrated with SonarQube to do code analysis.
 - Docker commands were incorporated to the pipeline script to create the docker image and push it to DockerHub.
 - Nexus was integrated with the pipeline to upload artifact to Nexus Repo.
-- After Nexus stage, the application was then deployed to the inbuilt Tomcat server run using Docker.
+- After Nexus stage, the application was deployed to the Kubernetes cluster.
+- To integrate K8s cluster with Jenkins, a service agent was created in K8s and necessary roles to deploy the deployment and service was assigned to it. Then the token for the service account was created and used as credential in Jenkins.
 
 <img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/pipeline_output.png" width="800" height="500">
 
