@@ -66,6 +66,7 @@
 - Docker commands were incorporated to the pipeline script to create the docker image and push it to DockerHub.
 - Nexus was integrated with the pipeline to upload artifact to Nexus Repo.
 - After Nexus stage, the application was deployed to the Kubernetes cluster.
+- We installed Kubernetes CLI Plugin in Jenkins.
 - To integrate K8s cluster with Jenkins, a service agent was created in K8s and necessary roles to deploy the deployment and service was assigned to it. Then the token for the service account was created and used as credential in Jenkins.
 
 <img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/pipeline.jpeg" width="800" height="500">
