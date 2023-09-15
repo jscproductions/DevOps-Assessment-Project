@@ -23,7 +23,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('Scan') {
+        stage('SonarQube Scan') {
             steps {
          
                 withSonarQubeEnv(installationName: 'sonar-server') { 
@@ -34,7 +34,7 @@ pipeline {
         
         
         
-        stage('Image Build') {
+        stage('Docker Image Build') {
             steps {
                 script{
                 sh "whoami"
@@ -43,7 +43,7 @@ pipeline {
                 
             }
         }
-        stage('push to dockerhub') {
+        stage('Pushing to Dockerhub) {
             steps {
                 script{
                 sh "docker login"
