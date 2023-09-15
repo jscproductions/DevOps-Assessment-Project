@@ -28,7 +28,7 @@
 - We tested the application by running the application within a docker container first so as to make sure that everything was working fine.
 - The builded docker image was then pushed to DockerHub, so that the deployment file in K8s could access the image from there.
 
-<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/dockerhub.jpeg" width="800" height="500">
+<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/mydockerhub.png" width="800" height="500">
 
 ## Kubernetes Cluster Creation using kubeadm
 - Three EC2 instances were created; one for the KMaster and the other two for KWorker.
