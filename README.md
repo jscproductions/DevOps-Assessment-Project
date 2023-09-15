@@ -28,7 +28,7 @@
 - We tested the application by running the application within a docker container first so as to make sure that everything was working fine.
 - The builded docker image was then pushed to DockerHub, so that the deployment file in K8s could access the image from there.
 
-<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/dockerhub.png" width="800" height="500">
+<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/dockerhub.jpeg" width="800" height="500">
 
 ## Kubernetes Cluster Creation using kubeadm
 - Three EC2 instances were created; one for the KMaster and the other two for KWorker.
@@ -68,9 +68,9 @@
 - After Nexus stage, the application was deployed to the Kubernetes cluster.
 - To integrate K8s cluster with Jenkins, a service agent was created in K8s and necessary roles to deploy the deployment and service was assigned to it. Then the token for the service account was created and used as credential in Jenkins.
 
-<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/pipeline_output.png" width="800" height="500">
+<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/pipeline.jpeg" width="800" height="500">
 
-<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/sonarqube.png" width="800" height="500">
+<img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/sonarqube.jpeg" width="800" height="500">
 
 <img src="https://github.com/jscproductions/FinalProject/blob/main/Screenshots/nexus.png" width="800" height="500">
 
