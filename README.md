@@ -54,7 +54,7 @@
 ## Kubernetes Cluster Creation using EKS
 - We also implemented the cluster using EKS.
 - Node group with two worker nodes were attached to it.
-- After deploying the application as a NodePort service, the node port corresponding to the pos was retrieved.
+- After deploying the application as a NodePort service, the node port corresponding to the application pods was retrieved.
 - It was then used to create an Application Load Balancer to direct the traffic comming to the load balancer to the application pods in the worker nodes by setting the target group.
 
 
